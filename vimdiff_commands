@@ -1,0 +1,19 @@
+sed -e 's/\r//g' $file_bk > $file : remove ^M in windows
+
+
+Reload    :edit or :e || force reload, (you will lose your modifications)
+
+do - Get changes from other window into the current window.
+
+dp - Put the changes from current window into the other window.
+
+]c - Jump to the next change.
+
+[c - Jump to the previous change.
+
+Ctrl W + Ctrl W - Switch to the other split window.
+
+vs or sp
+
+
+:diffoff and :diffthis 
