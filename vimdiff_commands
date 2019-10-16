@@ -1,5 +1,20 @@
 sed -e 's/\r//g' $file_bk > $file : remove ^M in windows
+sed '/CLIENTSCRIPT="foo"/s/.*/& CLIENTSCRIPT2="hello"/' abc.txt : Append texts after a specific string
+sed -e '/CLIENTSCRIPT="foo"/a\'$'\n''CLIENTSCRIPT2="hello"' abc.txt : Append as a line
+sed -e '/CLIENTSCRIPT="foo"/a\CLIENTSCRIPT2="hello"' abc.txt
+sed -e '/^ *CLIENTSCRIPT="foo"/b ins' -e b -e ':ins' -e 'a\'$'\n''CLIENTSCRIPT2="hello"' -e ': done' -e 'n;b done' abc.txt //append first line
 
+
+abc.txt
+------------
+CLIENTSCRIPT="foo"
+CLIENTSCRIPT2="hello"
+CLIENTSCRIPT="foo"
+CLIENTFILE="bar"
+CLIENTFILE="bar"
+CLIENTFILE="bar"
+CLIENTSCRIPT="foo"
+------------
 
 ------------------------------------------------------------
 Reload    :edit or :e || force reload, (you will lose your modifications)
