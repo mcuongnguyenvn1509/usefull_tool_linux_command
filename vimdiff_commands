@@ -5,6 +5,13 @@ sed -e '/CLIENTSCRIPT="foo"/a\CLIENTSCRIPT2="hello"' abc.txt
 sed -e '/^ *CLIENTSCRIPT="foo"/b ins' -e b -e ':ins' -e 'a\'$'\n''CLIENTSCRIPT2="hello"' -e ': done' -e 'n;b done' abc.txt //append first line
 
 
+awk '{if($0 ~ /bar/) {print "yes"}  else {print "no"}}' abc.txt
+awk '{if($0 ~ /bar/) {print "yes",$0}  else {print "no",$0}}' abc.txt
+awk '{print ($0 !~ /bar/)?"text_for_true":"text_for_false"}' abc.txt
+
+awk 'FNR==NR{ if (/bar/) p=NR; next} 1; FNR==p{ print "foo" }' abc.txt abc.txt
+sed '1h;1!H;$!d;x;s/.*bar[^\n]*/&\nfoo/' abc.txt
+
 abc.txt
 ------------
 CLIENTSCRIPT="foo"
